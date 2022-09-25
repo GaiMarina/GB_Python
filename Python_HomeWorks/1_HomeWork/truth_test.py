@@ -8,4 +8,5 @@ z = float(input('Enter Z: '))
 
 a = not(x or y or z)
 b = not x and not y and not z
+
 print(a == b)
