@@ -1,45 +1,65 @@
+
 # # Встроенные типы и операции с ними.
+
 # friend = 'Максим'
 # #         012345
+
 # # С 1 по 4-й
+
 # print(friend[1:4]) # 1,2,3
+
 # # С начала строки до 4-й
+
 # print(friend[:4]) # 0,1,2,3
+
 # # С 3 элемента до конца строки
+
 # print(friend[3:]) # 3,4,5
 #
 # #Тип среза - класс str
+
 # print(type(friend[1:4]))
+
 # ===============================
+
 # Методы
+
 # friends = 'Марина Николай'
-# # print(len(friends)) # C 1 - количество
-# #
-# print(friends.find('на')) # Индекс, на котором нашел.
+
+# # print(len(friends)) # C 1 - количество                          # len() - длина переменной
+#
+# print(friends.find('на')) # Индекс, на котором нашел.             .find('') - найти
 # #                            # -1, если не нашел
 # print(friends.split()) # Разбивает на строки через запятую, разделитель - пробел:
-#                        # ['Марина', 'Николай']#
+#                        # ['Марина', 'Николай']#                   .split('') - разбивка строки
 # friends = 'Марина; Николай'
 # print(friends.split(';'))
 #
-# print(friends.upper())
-# print(friends.lower())
+# print(friends.upper())                                            .upper()
+# print(friends.lower())                                            .lower())
 # ============================
+
 # Способы склейки строк.
+
 # name = 'Leo'
 # age = 30
+
 # # #1 конкатенация
+
 # # hello_str = 'Привет, ' + name + ' тебе ' + str(age) + ' лет'
 # # print((hello_str))
 # #
 # # #2 %
+
 # hello_str = 'Привет %s тебе %d лет'%(name, age)
 # print(hello_str)
 #
 # #3 format
 # hello_str = 'Привет {} тебе {} лет'.format(name, age)
 # print(hello_str)
+
 # =================================
+
 # Дана строка: "Первые 5 мест на соревнованиях: 1. иванов 2. петров 3. сидоров 4. орлов 5. соколов
 # Результат - поздравляем 1-ые 3 места: "Поздравляем 1.ИВАНОВ 2.ПЕТРОВ 3.СИДОРОВ с успехом!"
 # top5 = 'Первые 5 мест на соревнованиях: 1. иванов 2. петров 3. сидоров 4. орлов 5. соколов'
@@ -52,55 +72,70 @@
 #
 # print(result)
 # ==============================================================
+
 # СПИСКИ (LIST)
+
 # Пустой список
+
 # empty_list = []
 #
 # # заполненный элементами список
+
 # friends = ['Max', 'Leo', 'Kate']
 #
 # # тип списка - list
 # print(type(friends))
 #
 # # Доступны индексы (с 0)
+
 # print(('Второй друг: ', friends[1]))
 # print('Первый друг с конца', friends[-1])
 #
 # # Можно применить срезы
+
 # print(friends[1:2])
 # print(friends[:2])
 # print(friends[1:])
+
 # ===================================================
 """
 friends = ['Max', 'Leo', 'Kate']
 
 print (friends)
+
 # len() - количество элементов
 print(len(friends))
+
 # .append() - добавить элемент
 friends.append('Ron')
 print (friends)
 print(len(friends))
 
 # .pop() - удалить последний элемент
+
 print(friends.pop())
 print(friends)
 print(len(friends))
 
 # .clear - очистить список
+
 friends.clear()
 print(friends)
 
 friends = ['Max', 'Leo', 'Kate']
+
 # .remove() - удаление элемента по значению
+
 friends.remove('Kate')
 print(friends)
 
 # del - удаление по индексу.
+
 del friends[0]
 print(friends)
 """
 #==========================
+
 # оператор in
 """
 hero = 'Superman'
@@ -130,7 +165,7 @@ members = []
 while i > 0:
     name = input('Кто занял {} место '.format(i))
     members.append(name)
-    i-=1
+    i -= 1
 
 # Кто участвовал в соревновании по алфавиту (sorted())
 print('В соревновании участвовали: ', sorted(members))
@@ -145,6 +180,7 @@ result = 'Победители: {}. Поздравляем!'.format(result)
 print(result)
 """
 #=================================
+
 # for для последовательностей (позволяет не применять цикл while)
 # for позволяет перебирать элементы последовательности по порядку без указания индекса
 # while
@@ -175,22 +211,28 @@ for role in roles:
 print('end')
 """
 #================================
+
 # функция range
 
 # winners = ['Max', 'Leo', 'Kate']
 """
 # простой перебор
+
 for winner in winners:
     print(winner)
 
 # Если нужно вывести место победителя?
 
 # вывести нечетные цифры от 1 до 5
+
 numbers = [1, 3, 5]
+
 for number in numbers:
     print(number)
+    
 # А если цифр будет не 3, а 1000?
-# Функция range позволяет вывести последоательность целых чисел. Чаще с for
+
+# Функция range позволяет вывести последовательность целых чисел. Чаще с for
 
 numbers = range(10)
 print(numbers)
@@ -204,7 +246,9 @@ print(list(numbers))
 # for i in range(len(winners)):
 #     #print(i)
 #     print(i + 1,')', winners[i])
+
 #=====================================
+
 # вывести нечетные цифры от 1 до 5
 numbers = [1, 3, 5]
 
@@ -218,7 +262,9 @@ numbers = [1, 3, 5]
 
 # for i in range(1, len(winners) + 1):
 #     print(i,')', winners[i-1])
+
 # =========================================
+
 # СЛОВАРЬ
 # friends = ['Max', 'Leo', 'Kate']
 # print(friends)
@@ -252,7 +298,9 @@ numbers = [1, 3, 5]
 #
 # if 'has_car' in friend:
 #     print('Есть машина')
+
 #=====================================
+
 # friend = {
 #     'name': 'Max',
 #     'age': 23,
@@ -279,7 +327,9 @@ numbers = [1, 3, 5]
 # for key, val in friend.items():
 #     print(key)
 #     print(val)
+
 #============================
+
 # # МНОЖЕСТВА Не может быть 2-х одинаковых элементов.
 # # Запись как словарь, но только со значениями.
 # cities = ['Las Vegas', 'Paris', 'Moscow', 'Paris', 'Moscow']

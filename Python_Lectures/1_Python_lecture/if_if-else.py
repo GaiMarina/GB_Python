@@ -100,15 +100,14 @@ print(text.replace('ещё','ЕЩЁ'))        .replace()
 # Получить пояснение по функции
 
 text = 'съешь ещё этих мягких французских булок'
-#help(text.istitle)                                 #help()
+#help(text.istitle)                                 # help()
 help(int)
 """
 #============================
 """
 text = 'съешь ещё этих мягких французских булок'
-text = text[2:9] + text[-5] + text[:2]
-print(text[:])
-# сеикакл
+text = text[2:9] + text[-5] + text[:2] # ешь ещёбсъ
+print(text)
 
 print(text[0])              # c
 print(text[1])              # ъ
