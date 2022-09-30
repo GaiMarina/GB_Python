@@ -16,12 +16,6 @@ print("Введенный список:", entered_list)
 for i in range(5): 
     i = int(input('Введите число: '))
 
-num = i
-
-if num > i: 
-    i = num 
-
-print(i) 
 """
 
 #===========================
