@@ -4,3 +4,10 @@
 #    Пример:
 #    [2, 3, 4, 5, 6] => [12, 15, 16];
 #    [2, 3, 5, 6] => [12, 15]
+
+l_ist = [2, 3, 5, 7, 8]
+new_list = []
+
+for i in range((len(l_ist) + 1) // 2):
+    new_list.append(l_ist[i] * l_ist[-i - 1])
+print(new_list)
