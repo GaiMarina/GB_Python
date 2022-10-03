@@ -8,6 +8,6 @@
 l_ist = [2, 3, 8, 2, 7]
 new_list = []
 
-for i in range((len(l_ist) + 1) // 2):
+for i in range((len(l_ist) + 1) // 2): # range работает только с целыми! => деление //
     new_list.append(l_ist[i] * l_ist[-i - 1])
 print(new_list)
