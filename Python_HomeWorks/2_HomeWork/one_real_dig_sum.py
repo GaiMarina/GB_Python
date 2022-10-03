@@ -16,7 +16,7 @@ for i in range(len(num_list)):
 print(sum_dig)
 """
 #==============================
-"""
+
 # математически
 
 num = input('Enter a real number: ')
@@ -29,9 +29,9 @@ while num > 0:
     res += num % 10
     num //= 10
 print(res)
-"""
-#==========================
 
+#==========================
+"""
 num_list = input('Enter a real number: ')
 sum_dig = 0
 
@@ -39,6 +39,6 @@ for i in num_list:
     if i.isdigit():
         sum_dig += int(i)
 print(sum_dig)
-
+"""
 
 

@@ -6,7 +6,6 @@
 
 num_list = [1.1, 1.2, 3.1, 5.1, 10.01]
 new_list = []
-j = 0
 
 for i in num_list:
     j = round(i % 1, 2)
