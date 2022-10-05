@@ -36,19 +36,19 @@ print(pi)
 """
 #===================
 
-a = float(input("Введите число A: ")) 
-b = float(input("Введите число B: ")) 
-с = float(input("Введите число C: ")) 
-discr = (b ** 2) - (4 * a * с) 
-print(discr) 
-if discr > 0:
-    x1 = round((-b + ((discr) ** 0.5)) / (2 * a), 2) 
-    x2 = round((-b - ((discr) ** 0.5)) / (2 * a), 2) 
-    print(x1, x2) 
-elif discr == 0: 
-    x1 = round(-b / (2 * a), 2) 
-    print(x1) 
-elif discr < 0: print('Нет корней') 
+# a = float(input("Введите число A: ")) 
+# b = float(input("Введите число B: ")) 
+# с = float(input("Введите число C: ")) 
+# discr = (b ** 2) - (4 * a * с) 
+# print(discr) 
+# if discr > 0:
+#     x1 = round((-b + ((discr) ** 0.5)) / (2 * a), 2) 
+#     x2 = round((-b - ((discr) ** 0.5)) / (2 * a), 2) 
+#     print(x1, x2) 
+# elif discr == 0: 
+#     x1 = round(-b / (2 * a), 2) 
+#     print(x1) 
+# elif discr < 0: print('Нет корней') 
 
 #====================
 
@@ -63,3 +63,29 @@ elif discr < 0: print('Нет корней')
 # p = [3, 6, 9] 
 # roots = numpy.roots(p) 
 # print(roots) 
+
+#=============================
+
+# Найти корни квадратного уравнения Ax ** 2 + Bx + C = 0,
+# с помощью модуля. Запросите значения A, B, C 3 раза.
+# Уравнения и корни запишите в файл.
+
+from math import sqrt
+
+def abc(a, b, c):
+    d = b ** 2 - 4 * a * c
+    with open('result.txt', 'a', encoding='utf-8') as my_f:
+        my_f.write(f'{a}x^2 + {b}x + {c} = 0\n')
+        if d > 0 and a:
+            my_f.write(str((-b + sqrt(d)) / (2 * a)) + '\n')
+            my_f.write(str((-b - sqrt(d)) / (2 * a)) + '\n')
+        elif d == 0 and b:
+            my_f.write(str(-b / (2 * a)) + '\n')
+        else:
+            my_f.write('Корней нет.\n')
+            
+for i in range(3):
+    abc(int(input('Введите а: ')), (int(input('Введите b: '))), (int(input('Введите c: '))))
+
+
+
