@@ -30,15 +30,30 @@ print(list_1)
 """
 #=============================
 
-a = (int(input('Введите число: ')))
-l_ist = [0]
+# a = (int(input('Введите число: ')))
+# l_ist = [0]
 
-for i in range(1, a + 1):
-    if i == 1:
-        l_ist.append(1)
-        l_ist.insert(0, 1)
-    else:
-        a = l_ist[-1] + l_ist[-2]
-        l_ist.append(a)
-        l_ist.insert(0, a * (-1) ** (i - 1))
-print(l_ist)
+# for i in range(1, a + 1):
+#     if i == 1:
+#         l_ist.append(1)
+#         l_ist.insert(0, 1)
+#     else:
+#         a = l_ist[-1] + l_ist[-2]
+#         l_ist.append(a)
+#         l_ist.insert(0, a * (-1) ** (i - 1))
+# print(l_ist)
+
+# ========================
+
+def neg_fib(num: int):
+    a, b = 1, 1
+    list_nums = [0]
+    
+    for i in range(num):
+        list_nums.append(a)
+        list_nums.insert(0, a * (-1) ** i)
+        a, b = b, b + a
+        
+    return list_nums
+
+print(*neg_fib(int(input())))
