@@ -9,6 +9,7 @@ from math import pi
 from decimal import Decimal
 
 num = str(pi)                               # Можно использовать pi
+
 # num = input('Input the number: ')         # Можно использовать введенное число
 d = input('Input the necessary precision number d: ')
 
