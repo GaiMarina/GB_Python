@@ -12,14 +12,18 @@ num = str(pi)                               # Можно использоват�
 # num = input('Input the number: ')         # Можно использовать введенное число
 d = input('Input the necessary precision number d: ')
 
-num = Decimal(num)
-num = num.quantize(Decimal(str(d)))
-print(num)
+# num = Decimal(num)
+# num = num.quantize(Decimal(str(d)))
+
+# num = Decimal(num).quantize(Decimal(str(d))) # 2 строки объединила.
+# print(num)
+
+print(Decimal(num).quantize(Decimal(str(d)))) # еще 2 строки объединила.
 
 #==============================
-
-# Через функцию.
 """
+# Через функцию.
+
 
 def num_precise(n_um, d_c):
     n_um = Decimal(str(num))
