@@ -5,7 +5,6 @@
 
 import math
 
-
 def prime_factors(n):
     l_ist = []
     while n % 2 == 0:
@@ -17,8 +16,8 @@ def prime_factors(n):
             l_ist.append(i)
             n = n / i
             
-    if n > 2:
-        l_ist.append(n)
+    if n > 1:
+        l_ist.append(int(n))
     return l_ist
         
 num = int(input('Enter the number N for calculation: '))
