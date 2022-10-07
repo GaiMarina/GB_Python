@@ -20,7 +20,7 @@ def find_num(li_st, obj):
                                        #a + 1, чтобы искал со следующего индекса.
     else:
         print('-1')
-result = random_set(30, 'abc')
-print(result)
-find_num(result, 'bcc')
+result = random_set(30, 'абв')
+print(*result)
+find_num(result, 'бвв')
 

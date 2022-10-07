@@ -8,34 +8,30 @@
 from math import pi
 from decimal import Decimal
 
-num = str(pi)                               # Можно использовать pi
+# num = str(pi)                               # Можно использовать pi
 
-# num = input('Input the number: ')         # Можно использовать введенное число
-d = input('Input the necessary precision number d: ')
+# # num = input('Input the number: ')         # Можно использовать введенное число
+# d = input('Input the necessary precision number d: ')
 
-# num = Decimal(num)
-# num = num.quantize(Decimal(str(d)))
+# # num = Decimal(num)
+# # num = num.quantize(Decimal(str(d)))
 
-# num = Decimal(num).quantize(Decimal(str(d))) # 2 строки объединила.
-# print(num)
+# # num = Decimal(num).quantize(Decimal(d)) # 2 строки объединила.
+# # print(num)
 
-print(Decimal(num).quantize(Decimal(str(d)))) # еще 2 строки объединила.
+# print(Decimal(num).quantize(Decimal(d))) # еще 2 строки объединила.
 
 #==============================
-"""
+
 # Через функцию.
 
-
 def num_precise(n_um, d_c):
-    n_um = Decimal(str(num))
-    n_um = n_um.quantize(Decimal(str(d_c)))
+    n_um = Decimal(n_um)
+    n_um = n_um.quantize(Decimal(d_c))
     
     return n_um
+
 
 num = input('Input the number: ')
 d = input('Input the necessary precision number d: ')
 print(num_precise(num, d))
-
-"""
-
-
