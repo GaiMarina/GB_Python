@@ -21,14 +21,21 @@ def polynomial_to_file(degree):
 
     res_str = ''
     for i in c_ount:
+        
         r_num = random.choice(l_ist)
         r_op = random.choice(plus_minus_list)
-        if r_num != 0 and i != 1 and i != 0:
+        
+        if r_num != 0 and r_num != 1 and i != 1 and i != 0:
             res_str += r_op + ' ' + str(r_num) + '*x^' + str(i) + ' '
             continue
-        elif r_num == 1:
+        elif r_num == 1 and i != 1 and i != 0:
             res_str += r_op + ' ' + 'x^' + str(i) + ' '
             continue
+        elif r_num != 0 and r_num != 1 and i == 1:
+            res_str += r_op + ' ' + str(r_num) + '*x' + ' '
+            continue
+        elif r_num != 0 and r_num != 1 and i == 0:
+            res_str += r_op + ' ' + str(r_num) + ' '
         elif r_num == 0:
             continue
         elif r_num == 1 and i == 1:
@@ -37,15 +44,10 @@ def polynomial_to_file(degree):
         elif r_num == 1 and i == 0:
             res_str += r_op + ' ' + 1 + ' '
             continue
-        elif r_num != 0 and i == 1:
-            res_str += r_op + ' ' + str(r_num) + '*x' + ' '
-            continue
-        elif r_num != 0 and i == 0:
-            res_str += r_op + ' ' + str(r_num) + ' '
         res_str += '= 0' + '\n'
 
-    with open('polynomial.txt', 'a', encoding='utf-8') as the_file:
-        the_file.write(res_str[3:])
+    with open('polynomial_1.txt', 'a', encoding='utf-8') as the_file:
+        the_file.write(res_str[2:])
             
             
 polynomial_to_file(int(input('Enter the natural degree k: ')))
