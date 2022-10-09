@@ -17,3 +17,4 @@ for i in range(1, len(temp_result)):
         print(temp_result[i - 1] + 1)
 
 print(temp_result)
+
