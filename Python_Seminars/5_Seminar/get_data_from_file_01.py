@@ -3,9 +3,7 @@
 #    Среди чисел не хватает одного, чтобы выполнялось условие A[i] - 1 = A[i-1].
 #    Найдите это число.
 
-
-# from ast import If
-# from random import choice
+from random import choice
 
 
 # def read_numbers(file):  # получение данных из файла
@@ -24,7 +22,6 @@
 
 # ==============================
 
-from random import choice
 
 # 1. Создать список из натуральных чисел.
 #    Среди чисел не хватает одного, чтобы выполнялось условие A[i] - 1 = A[i-1].
@@ -36,7 +33,7 @@ def fill_list(count: int):
     return my_list
 
 
-new_list = (fill_list(int(input('Write count: '))))
+new_list = (fill_list(int(input('Input the count: '))))
 print(new_list)
 
 def find(my_list: list):
@@ -46,3 +43,4 @@ def find(my_list: list):
     return -1
 
 print(find(new_list))
+

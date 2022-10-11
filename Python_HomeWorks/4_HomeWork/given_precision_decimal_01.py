@@ -21,14 +21,14 @@ from decimal import Decimal
 
 # print(Decimal(num).quantize(Decimal(d))) # еще 2 строки объединила.
 
-#==============================
+# ==============================
 
 # Через функцию.
 
 # def num_precise(n_um, d_c):
 #     n_um = Decimal(n_um)
 #     n_um = n_um.quantize(Decimal(d_c))
-    
+
 #     return n_um
 
 
@@ -36,21 +36,22 @@ from decimal import Decimal
 # d = input('Input the necessary precision number d: ')
 # print(num_precise(num, d))
 
-#=====================
+# =====================
 
 
 # def accuracy(num, acc):
-#     number = Decimal(f'{num}') # Преобразование в строку чере формат.
+#     number = Decimal(f'{num}') # Преобразование в строку через формат.
 #     return number.quantize(Decimal(f'{acc}'))
 
 
 # print(accuracy(float(input('Enter a real number: ')), float(input('Enter the required accuracy 0.0001: '))))
 
-#=====================
+# =====================
 
-num = float(input('Enter a real number: ')) # float => число уже .0
+num = float(input('Enter a real number: '))  # float => число уже .0
 
-_, accu = input("Enter the required accuracy '0.0001': ").split(".") # разделяет на целую часть и 0001
-                                                                     # нам нужна длина после 0001...
-print(f"{num:.{len(accu)}f}") # Способ добавлять нули при форматировании. num: - означает, что начинается форматирование
-                              # Добавляем послео точки длину дробной части.
+_, accu = input("Enter the required accuracy '0.0001': ").split(".")  # разделяет на целую часть и 0001
+# нам нужна длина после 0001...
+# Способ добавлять нули при форматировании. num: - означает, что начинается форматирование
+print(f"{num:.{len(accu)}f}")
+# Добавляем после точки длину дробной части.

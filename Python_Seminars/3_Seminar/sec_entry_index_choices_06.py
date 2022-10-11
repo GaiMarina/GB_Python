@@ -7,7 +7,7 @@ from random import choices # choice - одно значение, choices - не�
 
 def random_set(n, word):
     new_list = []
-    for i in range(n):
+    for a in range(n):
         a = choices(word, k = 3) # k = 3 - сколько выбрать из списка.
         new_list.append(''.join(a)) # '', чтобы не было пробелов.
     return new_list
