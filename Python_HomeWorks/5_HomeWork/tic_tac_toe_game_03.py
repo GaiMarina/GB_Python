@@ -5,18 +5,18 @@
 def tic_tac_toe_board():
 
     print("\n")
-    print("\t               ")
-    print("\t   {}      {}      {} ".format(val[0], val[1], val[2]))
-    print('\t_____________________')
+    print("\t")
+    print("\t{}\t{}\t{}\t".format(val[0], val[1], val[2]))
+    print('\t__________________')
 
-    print("\t              ")
-    print("\t   {}      {}      {} ".format(val[3], val[4], val[5]))
-    print('\t_____________________')
+    print("\t")
+    print("\t{}\t{}\t{}\t".format(val[3], val[4], val[5]))
+    print('\t__________________')
 
-    print("\t              ")
+    print("\t")
 
-    print("\t   {}      {}      {}".format(val[6], val[7], val[8]))
-    print("\t              ")
+    print("\t{}\t{}\t{}\t".format(val[6], val[7], val[8]))
+    print("\t")
     print("\n")
 
 
@@ -48,7 +48,7 @@ def check_if_victory():
     return []
 
 
-def main():
+if __name__ == "__main__": 
     global val
     val = list(map(str, range(1, 10)))
     global first_player
@@ -68,9 +68,6 @@ def main():
                     f"{check_if_victory()} - Congratulations! You're the winner!!! {chr(127881)}{chr(129395)}{chr(127881)}")
                 break
         if counter == 8:
-            print(f'The game is tied{chr(129335)}')
+            print(f'The game is tied {chr(129335)}')
             break
         counter += 1
-
-
-main()
