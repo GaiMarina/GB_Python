@@ -167,3 +167,11 @@ x = list('AAAABBBCCDAABBB')
 [k for k, g in groupby(sorted(x))] 
 # ['A', 'B', 'C', 'D']
 #==========================
+
+#Форматирование с помощью %
+
+'Hello, %s!' % 'Vasya'
+# 'Hello, Vasya!'
+
+'%d %s, %d %s' % (6, 'bananas', 10, 'lemons')
+# '6 bananas, 10 lemons'

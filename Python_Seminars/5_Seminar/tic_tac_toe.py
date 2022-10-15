@@ -8,17 +8,17 @@ board = list(map(str, range(1, 10)))
 
 
 def draw_board():   # Рисуем поле.
-    print('-' * 20)
+    print('-' * 20) # написали подчеркивание
     for i in range(3):
-        for k in range(3):
+        for k in range(3): 
             print(f'{board[k + i * 3]:^5}', end=' ') # Формула вывода 3 раза.
-        print(f'\n{"-" * 20}')
+        print(f'\n{"-" * 20}')      # ^ - выравнивание по центру.
     print()
     
     
 def place_sign(token):      # Размещение X, 0
     global board
-    while True:
+    while True:     # Когда нужно прерываться в середине через break
         answer = input(f'Enter a number from 1 to 9.\nSelect a position {token}: ')
         if answer.isdigit and int(answer) in range(1, 10):
             answer = int(answer)
