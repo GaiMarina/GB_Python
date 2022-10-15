@@ -23,8 +23,8 @@ def move_making(mode, name, candies_left):
         elif mode == 2:
             q = randint(1, 29)
         else:
-            q = candies_left // 28 - 1
-            if q == 0:
+            q = candies_left % 29
+            if q <= 0:
                 q = 1
     return q
 
