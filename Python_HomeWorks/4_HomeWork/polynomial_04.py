@@ -10,48 +10,48 @@ from audioop import reverse
 import random
 
 
-# def polynomial_to_file(degree):
+def polynomial_to_file(degree):
 
-#     while degree < 0:
-#         degree = int(input('Error. Try again here: '))
+    while degree < 0:
+        degree = int(input('Error. Try again here: '))
 
-#     l_ist = [i for i in range(101)]
-#     plus_minus_list = ['+', '-']
-#     c_ount = [j for j in range(degree + 1)]
-#     c_ount.reverse()
+    l_ist = [i for i in range(101)]
+    plus_minus_list = ['+', '-']
+    c_ount = [j for j in range(degree + 1)]
+    c_ount.reverse()
 
-#     res_str = ''
-#     for i in c_ount:
+    res_str = ''
+    for i in c_ount:
 
-#         r_num = random.choice(l_ist)
-#         r_op = random.choice(plus_minus_list)
+        r_num = random.choice(l_ist)
+        r_op = random.choice(plus_minus_list)
 
-#         if r_num != 0 and r_num != 1 and i != 1 and i != 0:
-#             res_str += r_op + ' ' + str(r_num) + '*x^' + str(i) + ' '
-#             continue
-#         elif r_num == 1 and i != 1 and i != 0:
-#             res_str += r_op + ' ' + 'x^' + str(i) + ' '
-#             continue
-#         elif r_num != 0 and r_num != 1 and i == 1:
-#             res_str += r_op + ' ' + str(r_num) + '*x' + ' '
-#             continue
-#         elif r_num != 0 and r_num != 1 and i == 0:
-#             res_str += r_op + ' ' + str(r_num) + ' '
-#         elif r_num == 0:
-#             continue
-#         elif r_num == 1 and i == 1:
-#             res_str += r_op + ' ' + 'x' + ' '
-#             continue
-#         elif r_num == 1 and i == 0:
-#             res_str += r_op + ' ' + 1 + ' '
-#             continue
-#         res_str += '= 0' + '\n'
+        if r_num != 0 and r_num != 1 and i != 1 and i != 0:
+            res_str += r_op + ' ' + str(r_num) + '*x^' + str(i) + ' '
+            continue
+        elif r_num == 1 and i != 1 and i != 0:
+            res_str += r_op + ' ' + 'x^' + str(i) + ' '
+            continue
+        elif r_num != 0 and r_num != 1 and i == 1:
+            res_str += r_op + ' ' + str(r_num) + '*x' + ' '
+            continue
+        elif r_num != 0 and r_num != 1 and i == 0:
+            res_str += r_op + ' ' + str(r_num) + ' '
+        elif r_num == 0:
+            continue
+        elif r_num == 1 and i == 1:
+            res_str += r_op + ' ' + 'x' + ' '
+            continue
+        elif r_num == 1 and i == 0:
+            res_str += r_op + ' ' + 1 + ' '
+            continue
+        res_str += '= 0' + '\n'
 
-#     with open('polynomial_1.txt', 'a', encoding='utf-8') as the_file:
-#         the_file.write(res_str[2:])
+    with open('polynomial_1.txt', 'w', encoding='utf-8') as the_file:
+        the_file.write(res_str[2:])
 
 
-# polynomial_to_file(int(input('Enter the natural degree k: ')))
+polynomial_to_file(int(input('Enter the natural degree k: ')))
 
 
 # Задана натуральная степень k. # Сформировать случайным образом список коэффициентов (значения от 0 до 100) многочлена и записать в файл многочлен степени k. # Пример: # k=2 => 2x² + 4x + 5 = 0 или x² + 5 = 0 или 10*x² = 0 # Pn(x)=аnхn+an-1xn-1+аn-2хn-2+....+а2х2+a1х+а0, from random import randint def create_list(k, m, n): # создание списка случайных чисел указанного диапазона в соответствии с указанной степенью уравнения return [randint(m, n) for i in range(k + 1)]
@@ -98,34 +98,34 @@ def create_polynomial(input_list): # создание и форматирова�
 
 # Оптимизированный вариант.
 
-def polynomial_to_file(degree):
+# def polynomial_to_file(degree):
 
-    while degree < 0:
-        degree = int(input('Error. Try again here: '))
+#     while degree < 0:
+#         degree = int(input('Error. Try again here: '))
 
-    res_str = ''
-    nums_list = range(0, 100)
-    for i in range(degree, -1, -1):
+#     res_str = ''
+#     nums_list = range(0, 100)
+#     for i in range(degree, -1, -1):
 
-        r_num = choice(nums_list)
-        r_op = choice('+-')
+#         r_num = choice(nums_list)
+#         r_op = choice('+-')
 
-        if r_num:
-            if res_str:
-                res_str += ' '
-            res_str += r_op + ' '
-            if i:
-                if r_num != 1:
-                    res_str += str(r_num) + '*'
-                res_str += 'x'
-                if i != 1:
-                    res_str += '^' + str(i)
-            else:
-                res_str += str(r_num)
-    res_str += ' = 0' + '\n'
+#         if r_num:
+#             if res_str:
+#                 res_str += ' '
+#             res_str += r_op + ' '
+#             if i:
+#                 if r_num != 1:
+#                     res_str += str(r_num) + '*'
+#                 res_str += 'x'
+#                 if i != 1:
+#                     res_str += '^' + str(i)
+#             else:
+#                 res_str += str(r_num)
+#     res_str += ' = 0' + '\n'
 
-    with open('polynomial_1.txt', 'a', encoding='utf-8') as the_file:
-        the_file.write(res_str[2:])
+#     with open('polynomial_1.txt', 'a', encoding='utf-8') as the_file:
+#         the_file.write(res_str[2:])
 
 
-polynomial_to_file(int(input('Enter the natural degree k: ')))
+# polynomial_to_file(int(input('Enter the natural degree k: ')))
