@@ -112,7 +112,7 @@ def decoding(init_s):
     #         a, b = '', ''
     #     else:
     #         a += i
-    numbers = ''
+
     numbers = ''.join(x if not x.isalpha() else " " for x in init_s)
     print(numbers)
     print('\n' + '-' * 20 + '\n')
