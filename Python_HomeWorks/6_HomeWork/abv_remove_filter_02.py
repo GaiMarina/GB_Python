@@ -27,6 +27,8 @@ from random import choices
 
 # =============================
 
+# filter(), lambda
+
 def random_set(n, word):
     return ' '.join(str(b) for b in [''.join(choices(word, k=6)) for _ in range(n)])
 

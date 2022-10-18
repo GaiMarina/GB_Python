@@ -71,6 +71,8 @@ from platform import java_ver
 
 # =====================================
 
+# zip(), lambda
+
 def read_data(path):
     with open(path, 'r', encoding='utf-8') as data_file:
         init_data = data_file.read()
@@ -81,21 +83,15 @@ def pack(path):
 
     temp_result = read_data(path)
     pack_data = ''
-    print('\n' + '-' * 20 + '\n')
-    print(temp_result)
-    print('\n' + '-' * 20 + '\n')
 
     # for i, j in groupby(temp_result):
     #     pack_data += str(len(list(j))) + str(i)
     # print(pack_data)
     pack_data += ''.join((str(len(list(j))) + str(i))
                          for i, j in groupby(temp_result))
-    print(pack_data)
 
     with open('compression_RLE.txt', 'w', encoding='utf-8') as the_file:
         the_file.write(pack_data)
-
-    print('\n' + '-' * 20 + '\n')
 
 
 # def composition(cnt, s):
@@ -114,14 +110,8 @@ def decoding(init_s):
     #         a += i
 
     numbers = ''.join(x if not x.isalpha() else " " for x in init_s).split()
-    print(numbers)
-    print('\n' + '-' * 20 + '\n')
     abv = list(''.join(x for x in init_s if x.isalpha()))
-    print(abv)
-    print('\n' + '-' * 20 + '\n')
     set_list = list(zip(numbers, abv))
-    print(set_list)
-    print('\n' + '-' * 20 + '\n')
 
     return set_list
 
@@ -131,13 +121,10 @@ def unpack(path):
     temp_2_result = read_data(path)
     unpack_data = ''
 
-    unpack_data = ''.join(
-        starmap(lambda a, b: int(a) * b, decoding(temp_2_result)))
-    print(unpack_data)
+    unpack_data = ''.join(starmap(lambda a, b: int(a) * b, decoding(temp_2_result)))
 
     with open('uncompression_RLE.txt', 'w', encoding='utf-8') as the_file:
         the_file.write(unpack_data)
-    print('\n' + '-' * 20 + '\n')
 
 
 pack('/home/marina/Documents/GeekBrains/GB_Python/Python_HomeWorks/5_HomeWork/data.txt')
