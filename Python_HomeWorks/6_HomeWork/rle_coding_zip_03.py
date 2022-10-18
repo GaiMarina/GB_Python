@@ -87,8 +87,7 @@ def pack(path):
     # for i, j in groupby(temp_result):
     #     pack_data += str(len(list(j))) + str(i)
     # print(pack_data)
-    pack_data += ''.join((str(len(list(j))) + str(i))
-                         for i, j in groupby(temp_result))
+    pack_data += ''.join((str(len(list(j))) + str(i)) for i, j in groupby(temp_result))
 
     with open('compression_RLE.txt', 'w', encoding='utf-8') as the_file:
         the_file.write(pack_data)
@@ -119,9 +118,9 @@ def decoding(init_s):
 def unpack(path):
 
     temp_2_result = read_data(path)
-    unpack_data = ''
 
-    unpack_data = ''.join(starmap(lambda a, b: int(a) * b, decoding(temp_2_result)))
+    unpack_data = ''.join(
+        starmap(lambda a, b: int(a) * b, decoding(temp_2_result)))
 
     with open('uncompression_RLE.txt', 'w', encoding='utf-8') as the_file:
         the_file.write(unpack_data)
