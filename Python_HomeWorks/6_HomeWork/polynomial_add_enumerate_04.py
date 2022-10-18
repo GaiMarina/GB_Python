@@ -28,7 +28,7 @@
 # with open('pol_result.txt', 'a', encoding='utf-8') as the_file:
 #     the_file.write(result)
 
-#=========================
+# =========================
 
 # 5. Даны два файла, в каждом из которых находится запись многочлена.
 #    Задача - сформировать файл, содержащий сумму многочленов.
@@ -54,4 +54,3 @@ if len(temp_result) == len(temp_2_result):
             the_file.write(f'{v[:-5]} + {temp_2_result[i]}')
 else:
     print('The contents of the files do not match!')
-

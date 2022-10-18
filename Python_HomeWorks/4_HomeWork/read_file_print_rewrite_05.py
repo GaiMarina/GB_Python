@@ -35,17 +35,21 @@
 
 from random import choice
 
+
 def poly_sum(name_1: str, name_2: str):
     with open(name_1, 'r', encoding='utf-8') as my_f_1, \
             open(name_2, 'r', encoding='utf-8') as my_f_2:
-        first = my_f_1.readlines() # .readlines() возвращает список строк всех, которые находятся в файле.
+        # .readlines() возвращает список строк всех, которые находятся в файле.
+        first = my_f_1.readlines()
         second = my_f_2.readlines()
 
-        if len(first) == len(second): # Условие совпадения количества строк.
+        if len(first) == len(second):  # Условие совпадения количества строк.
             with open('sum_poly.txt', 'a', encoding='utf-8') as my_f_3:
-                for i, v in enumerate(first):           # enumerate - как range, но возвращает кортеж
-                        # состоящий из индекса и значения! Поэтому мы кортеж распаковывем в пер-х i и v!
-                    my_f_3.write(f'{v[:-5]} + {second[i]}') # отрезаем 5 от конца: = 0\n
+                # enumerate - как range, но возвращает кортеж
+                for i, v in enumerate(first):
+                    # состоящий из индекса и значения! Поэтому мы кортеж распаковываем в пер-х i и v!
+                    # отрезаем 5 от конца: = 0\n
+                    my_f_3.write(f'{v[:-5]} + {second[i]}')
         else:
             print('The contents of the files do not match!')
 

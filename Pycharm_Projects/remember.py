@@ -175,3 +175,14 @@ x = list('AAAABBBCCDAABBB')
 
 '%d %s, %d %s' % (6, 'bananas', 10, 'lemons')
 # '6 bananas, 10 lemons'
+
+#==========================
+
+fruits = ["apple", "banana", "cherry", "kiwi", "mango"]
+
+newlist = [x if x != "banana" else "orange" for x in fruits]
+
+print(newlist)
+# ['apple', 'orange', 'cherry', 'kiwi', 'mango'] 
+
+#==========================

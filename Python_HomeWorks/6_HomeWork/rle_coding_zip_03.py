@@ -113,13 +113,8 @@ def decoding(init_s):
     #     else:
     #         a += i
     numbers = ''
-    for i in init_s:
-        if i.isdigit():
-            numbers += i
-            continue
-        else:
-            numbers += ' '
-    print(list(numbers.split()))
+    numbers = ''.join(x if not x.isalpha() else " " for x in init_s)
+    print(numbers)
     print('\n' + '-' * 20 + '\n')
     abv = list(''.join(x for x in init_s if x.isalpha()))
     print(abv)
