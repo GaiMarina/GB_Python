@@ -6,9 +6,9 @@
 
 # 1. Сбор информации с датчиков     data_provider           get_temperature, get_pressure, get_wind_speed
 # 2. логирование                    logger                  temperature_logger, pressure_logger, wind_speed_logger
-# 3. UA                             user_interface          temperature_view, pressure_view, wind_speed_view
+# 3. UI                             user_interface          temperature_view, pressure_view, wind_speed_view
 # 4. HTML-генератор                 html_creater            create
-# 5. Главный модуль.                main                    кнопка: запустить систему.
+# 5. Главный модуль.                main                    кнопка: запустить систему, собирает все воедино.
 
 # Поставляет данные.
 
