@@ -1,4 +1,3 @@
-import info_input as info
 from datetime import datetime
 import csv
 from os import path
