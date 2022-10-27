@@ -1,7 +1,7 @@
 import logging
 from random import randint
 from uuid import uuid4
-
+from infa import TOKEN
 from telegram import Update, user
 from telegram.ext import Updater, CommandHandler, CallbackContext
 
@@ -121,7 +121,7 @@ def all_candies(update: Update, context: CallbackContext):
 
 if __name__ == '__main__':
 
-    updater = Updater('5475658610:AAFYBDM2f-ar1rKTqqBMYqW-ayKDFpaVIVs')
+    updater = Updater(TOKEN)
 
     updater.dispatcher.add_handler(CommandHandler('start', start))
     updater.dispatcher.add_handler(CommandHandler('toss_up', toss_up))
