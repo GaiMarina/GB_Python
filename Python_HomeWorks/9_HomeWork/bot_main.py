@@ -1,8 +1,7 @@
 import logging
 from random import randint
-from uuid import uuid4
-from infa import TOKEN
-from telegram import Update, user
+from infa.infa import TOKEN
+from telegram import Update
 from telegram.ext import Updater, CommandHandler, CallbackContext
 
 logging.basicConfig(
