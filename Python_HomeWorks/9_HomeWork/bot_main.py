@@ -1,6 +1,6 @@
 import logging
 from random import randint
-from infa.infa import TOKEN
+from pipPy.infa import TOKEN
 from telegram import Update
 from telegram.ext import Updater, CommandHandler, CallbackContext
 
