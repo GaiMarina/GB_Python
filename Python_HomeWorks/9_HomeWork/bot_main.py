@@ -58,7 +58,7 @@ def me(update: Update, context: CallbackContext):
     items = msg.split()
     a = int(items[1])
     b = int(items[2])
-    if a == b:
+    if a <= b:
         update.message.reply_text(f"Congratulations!!! You win!!!🥳🥳🥳")
     else:
         update.message.reply_text("The total number of candies equals: "
