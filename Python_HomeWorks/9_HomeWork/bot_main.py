@@ -72,7 +72,7 @@ def pc(update: Update, context: CallbackContext):
     items = msg.split()
     a = int(items[1])
     b = randint(1, 29)
-    if a == b or a < b:
+    if a <= b:
         update.message.reply_text("PC is a winner! Press /start to try again!")
     else:
         update.message.reply_text(f"PC took {b} candies.\n"
@@ -88,7 +88,7 @@ def game_bot(update: Update, context: CallbackContext):
     items = msg.split()
     a = int(items[1])
     b = a % 29
-    if a == b:
+    if a <= b:
         update.message.reply_text(f"Game_bot is a winner! Press /start to try again!")
     else:
         update.message.reply_text(f"game_bot took {b} candies.\n"
