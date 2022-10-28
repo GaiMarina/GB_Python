@@ -88,6 +88,8 @@ def game_bot(update: Update, context: CallbackContext):
     items = msg.split()
     a = int(items[1])
     b = a % 29
+    if b == 0:
+        b = 1
     if a <= b:
         update.message.reply_text(f"Game_bot is a winner! Press /start to try again!")
     else:
