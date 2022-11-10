@@ -22,14 +22,14 @@ TYPE_NUMS_CHOICE, EXPRESSION_INPUT, FLOAT_CALCULATIONS, COMPLEX_CALCULATIONS = r
 def space_grouping(exp):
     l_ist = ''
     for i in exp:
-        if i == '.' or i == ',':
+        if i.isdigit():
+            l_ist += i
+        elif i == '.' or i == ',':
             i = '.'
-            l_ist = l_ist[:-1]
             l_ist += i
             continue
-        elif i:
-            l_ist += i
-            l_ist += ' '
+        elif i in ["*", "/", "-", "+", "(", ")"]:
+            l_ist += ' ' + i + ' '
     return l_ist
 
 
@@ -129,6 +129,7 @@ def float_calculations(update, context: CallbackContext):
     msg = update.message.text
     logger.info("User's expression: %s: %s", user.first_name, msg)
     lst = space_grouping(msg)
+    update.message.reply_text(lst)
     arr_lst = rearrangement(update, lst)
     update.message.reply_text(arr_lst)  # ["5.6", "8.2", "+", "1", "-"]
     calc(arr_lst)
