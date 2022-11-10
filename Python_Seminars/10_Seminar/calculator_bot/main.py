@@ -15,4 +15,3 @@ updater.dispatcher.add_handler(MessageHandler(Filters.text, analize_command))
 
 updater.start_polling()
 updater.idle()
-

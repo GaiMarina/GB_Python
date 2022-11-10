@@ -1,15 +1,10 @@
 import logging
+from lib2to3.fixes.fix_input import context
 
-from telegram import ReplyKeyboardMarkup, ReplyKeyboardRemove, Update
+from logs import log
+from telegram import ReplyKeyboardMarkup, ReplyKeyboardRemove
 from telegram.ext import (
-    Updater,
-    CommandHandler,
-    MessageHandler,
-    Filters,
-    ConversationHandler, CallbackContext, CallbackQueryHandler,
-)
-
-from pipPy.infa import TOKEN
+    ConversationHandler, CallbackContext)
 
 logging.basicConfig(
     format='%(asctime)s - %(name)s - %(levelname)s - %(message)s', level=logging.INFO
@@ -35,10 +30,10 @@ def space_grouping(exp):
 
 def rearrangement(update, exp_msg):
     user = update.message.from_user
-    input_list = exp_msg.split()  # Промежуточный output (4', '3', '1', '-', '*', '9', '7', '-', '/')
+    input_list = exp_msg.split()
     output = []
     stack_list = []
-    for elem in input_list:  # '4*(3-1)/(9-7)'
+    for elem in input_list:
         if elem[0].isdigit():  # цифры в output
             output.append(
                 elem)  # ['4']  # ['*', '(']  # ['4', '3']  # ['4', '3', '1'] # ['/', '('] # ['4', '3', '1', '-', '*', '9']
@@ -50,7 +45,8 @@ def rearrangement(update, exp_msg):
                 # print(output)  # ['4', '3', '1', '-']  # ['4', '3', '1', '-', '*', '9', '7', '-']
             if not stack_list:
                 logger.info("Error! %s: %s", user.first_name, "Несогласованные скобки")
-                update.message.reply_text("Uncorrect placement of parentheses")
+                update.message.reply_text("Uncorrect placement of parentheses\n\n"
+                                          "/start /help /cancel")
                 exit()
             stack_list.pop()  # ['*'] # ['/']
         elif elem in ["*", "/"]:
@@ -63,12 +59,14 @@ def rearrangement(update, exp_msg):
             stack_list.append(elem)  # ['*', '(', '-']  # ['/', '(', '-']
         else:
             logger.info("Error! %s: %s", user.first_name, 'Нераспознанный знак')
-            update.message.reply_text("Error! Unrecognized sign!")
+            update.message.reply_text("Error! Unrecognized sign!\n\n"
+                                      "/start /help /cancel")
             exit()
     while stack_list:
         if stack_list[-1] not in ["*", "/", "+", "-"]:
             logger.info("Error! %s: %s", user.first_name, "Несогласованные скобки")
-            update.message.reply_text("Uncorrect placement of parentheses")
+            update.message.reply_text("Uncorrect placement of parentheses\n\n"
+                                      "/start /help /cancel")
             exit()
         output.append(stack_list.pop())  # ['4', '3', '1', '-', '*', '9', '7', '-', '/']
     return output
@@ -93,31 +91,78 @@ def calc(out):
     return res[0]
 
 
+def calc_complex(out):
+    res = []
+    for elem in out:  # ['4', '3.2', '1', '-', '*', '9', '7', '-', '/']
+        if elem[0].isdigit():
+            for j in elem:
+                if j.isdigit():
+                    float(j)
+            res.append(complex(elem))  # [4]  # [4, 3]  # [4, 3, 1]  # [8, 9]  # [8, 9, 7]
+        else:
+            b = res.pop()
+            a = res.pop()  # 3 1  # 4 2  # 9 7  # 8 2
+            if elem == "+":
+                res.append(a + b)
+            elif elem == "-":
+                res.append(a - b)  # [4, 2]  # [8, 2]
+            elif elem == "*":
+                res.append(a * b)  # 4 2
+            elif elem == "/":
+                res.append(a / b)  # 8 2
+    return res[0]
+
+
+def help_command(update, context: CallbackContext):
+    update.message.reply_text("CALCULATOR PROGRAM \n"
+                              "/start allows you to start from the beginning \n"
+                              "/cancel is to quit \n\n"
+                              "In mode 'FLOAT' an expression is entered as a whole\n"
+                              "Ex: 3-2.3+(4-5)\n\n"
+                              "In mode 'COMPLEX' the complex numbers must be entered without "
+                              "any spaces. "
+                              "All the other numbers and marks must be entered with a space.\n"
+                              "Ex: 2-3j + 5-4j")
+
+
 def start(update, _):
-    reply_keyboard = [['start', 'help', 'exit']]
+    log(update, context)
+    reply_keyboard = [["Let's start!"]]
     markup_key = ReplyKeyboardMarkup(reply_keyboard, one_time_keyboard=False)
-    update.message.reply_text("Hello, I'm a calculator_bot! Use the tips below to go on.",
-                              reply_markup=markup_key)
+    update.message.reply_text("Hello, I'm a calculator_bot! \n\n"
+                              "In mode 'FLOAT' an expression is entered as a whole\n" \
+                              "Ex: 3-2.3+(4-5)\n\n"
+                              "In mode 'COMPLEX' the complex numbers must be entered "
+                              "without any spaces. " \
+                              "All the other numbers and marks must be entered with a space.\n" \
+                              "Ex: 2-3j + 5-4j\n\n"
+                              "Any time press /start to restart\n"
+                              "press /help for an information\n"
+                              "or press /cancel to quit\n\n"
+                              "Use the tips below to go on.", reply_markup=markup_key)
     return TYPE_NUMS_CHOICE
 
 
 def type_nums_choice(update, _):
+    log(update, context)
     reply_keyboard = [['complex', 'float']]
     user = update.message.from_user
     msg = update.message.text
     logger.info("User's choice: %s: %s", user.first_name, msg)
     markup_key = ReplyKeyboardMarkup(reply_keyboard, one_time_keyboard=True)
-    update.message.reply_text("Ok, make your choice: ",
+    update.message.reply_text("Ok, make your choice: \n"
+                              "/start /help /cancel",
                               reply_markup=markup_key)
     return EXPRESSION_INPUT
 
 
 def expression_input(update, _):
+    log(update, context)
     msg = update.message.text
-    # update.message.reply_text(msg)  # float
     user = update.message.from_user
     logger.info("User's choice: %s: %s", user.first_name, msg)
-    update.message.reply_text('Input an expression to calculate: ')
+    update.message.reply_text('Input an expression to calculate: \n\n'
+                              '/start /help /cancel')
     if msg == 'float':
         return FLOAT_CALCULATIONS
     elif msg == 'complex':
@@ -125,55 +170,31 @@ def expression_input(update, _):
 
 
 def float_calculations(update, context: CallbackContext):
+    log(update, context)
     user = update.message.from_user
     msg = update.message.text
     logger.info("User's expression: %s: %s", user.first_name, msg)
     lst = space_grouping(msg)
-    update.message.reply_text(lst)
     arr_lst = rearrangement(update, lst)
-    update.message.reply_text(arr_lst)  # ["5.6", "8.2", "+", "1", "-"]
     calc(arr_lst)
-    update.message.reply_text(f'{msg} = {calc(arr_lst)}')
+    update.message.reply_text(f'{msg} = {calc(arr_lst)}\n\n'
+                              f'/start /help /cancel')
     return cancel
 
 
-def complex_calculations(update, _):
+def complex_calculations(update, context):
+    log(update, context)
     user = update.message.from_user
     msg = update.message.text
     logger.info("User's input: %s: %s", user.first_name, msg)
-    update.message.reply_text(msg)
+    lst = rearrangement(update, msg)
+    update.message.reply_text(f'{calc_complex(lst)}\n\n'
+                              f'/start /help /cancel')
     return ConversationHandler.END
 
 
 def cancel(update, _):
-    update.message.reply_text('Bye')
+    log(update, context)
+    update.message.reply_text('Bye \n\n'
+                              '/start /help /cancel', reply_markup=ReplyKeyboardRemove())
     return ConversationHandler.END
-
-
-# ================================
-
-if __name__ == '__main__':
-    updater = Updater(TOKEN)
-    dispatcher = updater.dispatcher
-
-    conv_handler = ConversationHandler(
-        entry_points=[CommandHandler('start', start)],
-        states={
-            TYPE_NUMS_CHOICE: [MessageHandler(Filters.regex('^(start|help|exit)$'), type_nums_choice)],
-            # COMPLEX_OP: [MessageHandler(Filters.regex('^(complex|float)$'), complex_op)],
-            EXPRESSION_INPUT: [MessageHandler(Filters.regex('^(complex|float)$'), expression_input)],
-            FLOAT_CALCULATIONS: [MessageHandler(Filters.text, float_calculations)],
-            COMPLEX_CALCULATIONS: [MessageHandler(Filters.text, complex_calculations)],
-            # CHOICE: [MessageHandler(Filters.text, choice)]
-        },
-        fallbacks=[CommandHandler('cancel', cancel)]
-    )
-
-    dispatcher.add_handler(conv_handler)
-
-    print('server start')
-
-    updater.start_polling()
-    updater.idle()
-
-# =============================================
