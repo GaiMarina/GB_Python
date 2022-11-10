@@ -45,8 +45,7 @@ def rearrangement(update, exp_msg):
                 # print(output)  # ['4', '3', '1', '-']  # ['4', '3', '1', '-', '*', '9', '7', '-']
             if not stack_list:
                 logger.info("Error! %s: %s", user.first_name, "Несогласованные скобки")
-                update.message.reply_text("Uncorrect placement of parentheses\n\n"
-                                          "/start /help /cancel")
+                update.message.reply_text("Uncorrect placement of parentheses")
                 exit()
             stack_list.pop()  # ['*'] # ['/']
         elif elem in ["*", "/"]:
@@ -59,14 +58,12 @@ def rearrangement(update, exp_msg):
             stack_list.append(elem)  # ['*', '(', '-']  # ['/', '(', '-']
         else:
             logger.info("Error! %s: %s", user.first_name, 'Нераспознанный знак')
-            update.message.reply_text("Error! Unrecognized sign!\n\n"
-                                      "/start /help /cancel")
+            update.message.reply_text("Error! Unrecognized sign!")
             exit()
     while stack_list:
         if stack_list[-1] not in ["*", "/", "+", "-"]:
             logger.info("Error! %s: %s", user.first_name, "Несогласованные скобки")
-            update.message.reply_text("Uncorrect placement of parentheses\n\n"
-                                      "/start /help /cancel")
+            update.message.reply_text("Uncorrect placement of parentheses")
             exit()
         output.append(stack_list.pop())  # ['4', '3', '1', '-', '*', '9', '7', '-', '/']
     return output
@@ -136,7 +133,7 @@ def start(update, _):
                               "without any spaces. " \
                               "All the other numbers and marks must be entered with a space.\n" \
                               "Ex: 2-3j + 5-4j\n\n"
-                              "Any time press /start to restart\n"
+                              "Press /start to restart\n"
                               "press /help for an information\n"
                               "or press /cancel to quit\n\n"
                               "Use the tips below to go on.", reply_markup=markup_key)
@@ -161,8 +158,7 @@ def expression_input(update, _):
     msg = update.message.text
     user = update.message.from_user
     logger.info("User's choice: %s: %s", user.first_name, msg)
-    update.message.reply_text('Input an expression to calculate: \n\n'
-                              '/start /help /cancel')
+    update.message.reply_text('Input an expression to calculate: ')
     if msg == 'float':
         return FLOAT_CALCULATIONS
     elif msg == 'complex':
@@ -197,4 +193,4 @@ def cancel(update, _):
     log(update, context)
     update.message.reply_text('Bye \n\n'
                               '/start /help /cancel', reply_markup=ReplyKeyboardRemove())
-    return ConversationHandler.END
+
